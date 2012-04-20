@@ -1,0 +1,377 @@
+<html>
+<head>
+  <title>test grid</title>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.1/underscore-min.js"></script>
+  <style type="text/css">
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+* {
+  -webkit-transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  -o-transition: all .5s ease-in-out;
+  -ms-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+html, body {
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Arial", serif;
+  font-size: 13px;
+  line-height: 18px;
+  background-color: #F6F6F6;
+  padding: 50px;
+}
+
+.container { margin: 30px auto; padding: 10px; min-width: 960px; min-height: 600px; background: #fff; border: 1px solid #ddd; display:block; position:relative; padding-bottom: 50px; margin-bottom :50px;}
+
+.block {
+  position: absolute;
+  display:block;
+  background: #fff;
+  width: 240px;
+  min-height: 240px;
+  border: 1px solid #ddd;
+}
+.thumbnail {
+  width: 100%; min-height: 240px; background: #333; margin:0; padding:0;
+}
+.meta { padding: 10px; }
+
+.clearfix { clear: both;
+  xfont-size: 1px;
+}
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+  }
+.container:after{clear:both;}
+
+  </style>
+</head>
+<body>
+
+  <div class='container clearfix'>
+
+    <div class='block' id='product-1'>
+      <div class='thumbnail'>
+        <img/>
+      </div>
+      <div class='meta'>
+        <p>Some title</p>
+        <p>Some other title</p>
+      </div>
+    </div>
+    <div class='block' id='product-2'>
+      <div class='thumbnail'>
+        <img/>
+      </div>
+      <div class='meta'>
+        <p>Product2</p>
+        <p>Some other title</p>
+      </div>
+    </div>
+    <div class='block' id='product-3'>
+      <div class='thumbnail'>
+        <img/>
+      </div>
+      <div class='meta'>
+        <p>Product3</p>
+        <p>Some other title</p>
+      </div>
+    </div>
+    <div class='block' id='product-4'>
+      <div class='thumbnail'>
+        <img/>
+      </div>
+      <div class='meta'>
+        <p>Product4</p>
+        <p>Some other title</p>
+      </div>
+    </div>
+    <div class='block' id='product-5'>
+      <div class='thumbnail'>
+        <img/>
+      </div>
+      <div class='meta'>
+        <p>Product5</p>
+        <p>Some other title</p>
+      </div>
+    </div>
+    <div class='block' id='product-6'>
+      <div class='thumbnail'>
+        <img/>
+      </div>
+      <div class='meta'>
+        <p>Product6</p>
+        <p>Some other title</p>
+      </div>
+    </div>
+    <div class='block' id='product-7'>
+      <div class='thumbnail'>
+        <img/>
+      </div>
+      <div class='meta'>
+        <p>Product7</p>
+        <p>Some other title</p>
+      </div>
+    </div>
+    <div class='block' id='product-8'>
+      <div class='thumbnail'>
+        <img/>
+      </div>
+      <div class='meta'>
+        <p>Product8</p>
+        <p>Some other title</p>
+      </div>
+    </div>
+    <div class='block' id='product-9'>
+      <div class='thumbnail'>
+        <img/>
+      </div>
+      <div class='meta'>
+        <p>Product9</p>
+        <p>Some other title</p>
+      </div>
+    </div>
+    <div class='block' id='product-10'>
+      <div class='thumbnail'>
+        <img/>
+      </div>
+      <div class='meta'>
+        <p>Product10</p>
+        <p>Some other title</p>
+      </div>
+    </div>
+
+    <div class='block' id='product-11'>
+      <div class='thumbnail'>
+        <img/>
+      </div>
+      <div class='meta'>
+        <p>S11</p>
+        <p>Some other title</p>
+      </div>
+    </div>
+    <div class='block' id='product-12'>
+      <div class='thumbnail'>
+        <img/>
+      </div>
+      <div class='meta'>
+        <p>12</p>
+        <p>Some other title</p>
+      </div>
+    </div>
+    <div class='block' id='product-13'>
+      <div class='thumbnail'>
+        <img/>
+      </div>
+      <div class='meta'>
+        <p>13</p>
+        <p>Some other title</p>
+      </div>
+    </div>
+    <div class='block' id='product-14'>
+      <div class='thumbnail'>
+        <img/>
+      </div>
+      <div class='meta'>
+        <p>14</p>
+        <p>Some other title</p>
+      </div>
+    </div>
+    <div class='block' id='product-15'>
+      <div class='thumbnail'>
+        <img/>
+      </div>
+      <div class='meta'>
+        <p>15</p>
+        <p>Some other title</p>
+      </div>
+    </div>
+    <div class='block' id='product-16'>
+      <div class='thumbnail'>
+        <img/>
+      </div>
+      <div class='meta'>
+        <p>16</p>
+        <p>Some other title</p>
+      </div>
+    </div>
+    <div class='block' id='product-17'>
+      <div class='thumbnail'>
+        <img/>
+      </div>
+      <div class='meta'>
+        <p>17</p>
+        <p>Some other title</p>
+      </div>
+    </div>
+    <div class='block' id='product-18'>
+      <div class='thumbnail'>
+        <img/>
+      </div>
+      <div class='meta'>
+        <p>18</p>
+        <p>Some other title</p>
+      </div>
+    </div>
+    <div class='block' id='product-19'>
+      <div class='thumbnail'>
+        <img/>
+      </div>
+      <div class='meta'>
+        <p>19</p>
+        <p>Some other title</p>
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+<script type="text/javascript">
+
+var columns = {};
+var columnsHeight = [];
+
+function loadPanels() {
+  var gutter = 20; // 20 pixel gutter between panels
+  var settings = calculateColumnsAndMargin(gutter);
+  var numCols = settings.numCols;
+  var leftMargin = settings.leftMargin;
+
+  // initialize columns
+  _.each(_.range(numCols), function(i){
+    columns[i] = []; // array of elements to add
+    columnsHeight[i] = 0; // init height
+  });
+
+  // interate through each block and add to shortest column
+  $('.block').each(function(i,el){
+    // find shortest column
+    var height = _.min(columnsHeight);
+    var idx = columnsHeight.indexOf(height);
+
+    // set left and top
+    var newTop = height + gutter; // calc new top
+    var newLeft = leftMargin + (($(el).outerWidth() + gutter) * idx); 
+    $(el).css({'top': newTop, 'left':newLeft});
+    // update new height
+    columnsHeight[idx] += gutter + $(el).outerHeight();
+    // add el to column
+    columns[idx].push(el);
+  });
+}
+
+var calculateColumnsAndMargin = function(gutter) {
+  var winWidth = $(window).width();
+  var colWidth = $('div.block:first').outerWidth() + gutter;
+
+  var cols =  parseInt(winWidth / (colWidth + gutter), 10);
+  var contentWidth = (cols * colWidth) + gutter;
+  var leftMar = ((winWidth - contentWidth) / 2) - gutter;
+  return {numCols: cols, leftMargin: leftMar}
+}
+
+$(function(){
+
+  // now randomly set height to each thumbnail div for testing
+
+  // $('.thumbnail').each(function(){ 
+  //   var height = 20 + (parseInt((Math.random()*10)) * 50); 
+  //   $(this).css('height', height);
+  // });
+
+
+  // redo on resize
+  $(window).on('resize', loadPanels);
+  loadPanels();
+
+})
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
