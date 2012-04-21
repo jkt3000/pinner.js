@@ -1,0 +1,11 @@
+
+pinner.js
+by John Tajima, Copyright 2012
+MIT License
+
+A simple jQuery plugin for vertical column layout like pinterest.com.
+
+Key feature is that the vertical columns of pins will readjust as the images get loaded into the pins.
+Requires imagesLoaded plugin: http://github.com/desandro/imagesloaded
+
+Project Page & Demos: http://redronin.github.com/pinner.js

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>pinner.js - a pinterest-like jquery plugin</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="pinner.js is a simple jquery plugin that loads pins into nice vertical column layouts, similiar to pinterest.com">
+  <meta name="author" content="John Tajima, @redronin">
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
+
+  <script src="../imagesloaded.js" type="text/javascript"></script>
+  <script src="../pinner.js" type="text/javascript"></script>
+  
+
+  <style type="text/css">
+
+  html, body { background: #f6f6f6;}
+  .page-header { padding-top:40px; padding-left:20px;}
+  /* for CSS transition animations */
+  * {
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    -ms-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  /* container holding the pins */
+  #pincontainer { padding-top: 40px; display:block; position:relative;}
+
+  /* pin element */
+  .pin { 
+    position: absolute; display:block; left: 50%; background: #fff;
+    width: 240px; min-height: 120px; border: 1px solid #ddd;
+  }
+
+  /* additional styling for the image container and meta data container */
+  .thumbnail { margin:0; padding:0; overflow:hidden; border:none; }
+  .thumbnail img { width: 240px; border:none;}
+  .meta { padding: 10px; }
+
+  </style>
+</head>
+<body>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container" style='width:100%; padding-left:20px'>
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">Pinner.js</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li class="active"><a href="http://redronin.github.com/pinner.js">Home</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
+
+  <div class='page-header'>
+    <h2>Simple Demo</h2>
+    <p>Moves all pins into columns. As images are loaded for the pins, adjust the layout of the pins in each column as the pin heights change.</p>
+  </div>
+
+  <div id='pincontainer'>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x200/ff00ff'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x120/dd3344'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x240/ffff66'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x180/66ff99'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x240/aaccdd'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x280/335577'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x300/88ddee'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x140/33ccdd'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x160/339977'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x320/ff00ff'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x150/66ff99'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x220/aaccdd'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x220/335577'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x310/88ddee'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x140/33ccdd'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x260/339977'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x100/ff00ff'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+$(function(){
+  $('#pincontainer').pinner({
+    pinSelector: '.pin',                // class of the pin
+    imageSelector: '.thumbnail img',    // selector for the image
+    gutter: 10
+  });
+})
+</script>
+</body>
+</html>
