@@ -7,55 +7,42 @@
   <meta name="description" content="pinner.js is a simple jquery plugin that loads pins into nice vertical column layouts, similiar to pinterest.com">
   <meta name="author" content="John Tajima, @redronin">
   <script src="http://code.jquery.com/jquery-latest.js"></script>
-  <script src="js/pinner.js" type="text/javascript"></script>
   <link rel="stylesheet" type="text/css" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
 
-  <script type="text/javascript">
-    // imageloaded
-  (function(c,n){var k="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";c.fn.imagesLoaded=function(l){function m(){var b=c(h),a=c(g);d&&(g.length?d.reject(e,b,a):d.resolve(e));c.isFunction(l)&&l.call(f,e,b,a)}function i(b,a){b.src===k||-1!==c.inArray(b,j)||(j.push(b),a?g.push(b):h.push(b),c.data(b,"imagesLoaded",{isBroken:a,src:b.src}),o&&d.notifyWith(c(b),[a,e,c(h),c(g)]),e.length===j.length&&(setTimeout(m),e.unbind(".imagesLoaded")))}var f=this,d=c.isFunction(c.Deferred)?c.Deferred():
-  0,o=c.isFunction(d.notify),e=f.find("img").add(f.filter("img")),j=[],h=[],g=[];e.length?e.bind("load.imagesLoaded error.imagesLoaded",function(b){i(b.target,"error"===b.type)}).each(function(b,a){var e=a.src,d=c.data(a,"imagesLoaded");if(d&&d.src===e)i(a,d.isBroken);else if(a.complete&&a.naturalWidth!==n)i(a,0===a.naturalWidth||0===a.naturalHeight);else if(a.readyState||a.complete)a.src=k,a.src=e}):m();return d?d.promise(f):f}})(jQuery);
-  </script>
+  <script src="../imagesloaded.js" type="text/javascript"></script>
+  <script src="../pinner.js" type="text/javascript"></script>
+  
 
   <style type="text/css">
 
-body {
-  font-family: "Arial", serif;
-  font-size: 13px;
-  line-height: 18px;
-  background-color: #F6F6F6;
-  padding: 50px;
-}
+  html, body { background: #f6f6f6;}
+  .page-header { padding-top:40px; padding-left:20px;}
+  /* for CSS transition animations */
+  * {
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    -ms-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
 
-* {
-  -webkit-transition: all .5s ease-in-out;
-  -moz-transition: all .5s ease-in-out;
-  -o-transition: all .5s ease-in-out;
-  -ms-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
 
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
+  /* container holding the pins */
+  #pincontainer { padding-top: 40px; display:block; position:relative;}
 
-#pincontainer { padding-top: 40px; display:block; position:relative;}
-/*
-.container { margin: 30px auto; padding: 10px; min-width: 960px; min-height: 600px; background: #fff; border: 1px solid #ddd; display:block; position:relative; padding-bottom: 50px; margin-bottom :50px;}*/
+  /* pin element */
+  .pin { 
+    position: absolute; display:block; left: 50%; background: #fff;
+    width: 240px; min-height: 120px; border: 1px solid #ddd;
+  }
 
-.pin {
-  position: absolute;
-  display:block;
-  left: 50%;
-  background: #fff;
-  width: 240px;
-  min-height: 120px;
-  border: 1px solid #ddd;
-}
-.thumbnail { margin:0; padding:0; overflow:hidden; border:none;
-}
-
-.thumbnail img { width: 240px; border:none;}
-.meta { padding: 10px; }
+  /* additional styling for the image container and meta data container */
+  .thumbnail { margin:0; padding:0; overflow:hidden; border:none; }
+  .thumbnail img { width: 240px; border:none;}
+  .meta { padding: 10px; }
 
   </style>
 </head>
@@ -71,9 +58,7 @@ body {
         <a class="brand" href="#">Pinner.js</a>
         <div class="nav-collapse">
           <ul class="nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li class="active"><a href="http://redronin.github.com/pinner.js">Home</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -81,7 +66,8 @@ body {
   </div>
 
   <div class='page-header'>
-    <h2>Sample Content</h2>
+    <h2>Simple Demo</h2>
+    <p>Moves all pins into columns. As images are loaded for the pins, adjust the layout of the pins in each column as the pin heights change.</p>
   </div>
 
   <div id='pincontainer'>
@@ -160,16 +146,11 @@ body {
 <script type="text/javascript">
 $(function(){
   $('#pincontainer').pinner({
-    pinSelector: '.pin',
-    imageSelector: '.thumbnail img',
-    gutter: 10,
-    showImage: false, // hide images until loaded
-  })
+    pinSelector: '.pin',                // class of the pin
+    imageSelector: '.thumbnail img',    // selector for the image
+    gutter: 10
+  });
 })
 </script>
-
-
-
-
 </body>
 </html>

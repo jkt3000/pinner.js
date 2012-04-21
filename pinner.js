@@ -1,16 +1,16 @@
-/* -------------------------------------------------------------------------------------------
+/* 
  * pinner.js
  * by John Tajima, Copyright 2012
+ * MIT License
  *
- * A simple pinterest-like vertical column layout plugin for jQuery 
- *
- * ------------------------------------------------------------------------------------------ */
+ * A simple jQuery plugin for vertical column layout like pinterest.com
+ */
 
 (function($){
 
   $.fn.pinner = function(options) {
     $.fn.pinner.opts            = $.extend({}, $.fn.pinner.defaults, options);
-    $.fn.pinner.opts.columns    = {};      // contains contents of each column
+    $.fn.pinner.opts.columns    = {};   // contains contents of each column
     $.fn.pinner.opts.colHeights = [];   // current height of each column
     $.fn.pinner.opts.container  = this;
 
