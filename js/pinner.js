@@ -18,7 +18,9 @@
     var pinSelector   = $.fn.pinner.opts.pinSelector;
 
     // set imageLoaded listener on all images
-
+    $(imageSelector).imagesLoaded(function(){
+      showImages();
+    });
 
     // set imageloaded listener on each image
     $(imageSelector).each(function(i,el){
@@ -41,7 +43,7 @@
     pinSelector: '.pin',
     imageSelector: '.thumbnail img',
     showImage: true,
-    gutter: 20
+    gutter: 10
   };
 
   // current option values
@@ -72,7 +74,7 @@
 
       // set left and top
       var newTop = height; // calc new top
-      var newLeft = leftMargin + (($(el).outerWidth() + gutter) * idx); 
+      var newLeft = leftMargin + ($(el).outerWidth() * idx) + (gutter * (idx+1)); 
       $(el).css({'top': newTop, 'left':newLeft});
       // update new height
       colHeights[idx] += gutter + $(el).outerHeight();
@@ -104,6 +106,12 @@
     })
   }
 
+  function showImages() {
+    if ($.fn.pinner.opts.showImage == false) {
+      $($.fn.pinner.opts.imageSelector).fadeIn(100);
+    }
+  }
+
   // returns number of columns and left-margin offset
   function calculateColumnsAndMargin() {
     var sel       = $.fn.pinner.opts.pinSelector;
@@ -112,8 +120,8 @@
 
     var ctrWidth  = $(ctr).width();
     var colWidth  = $(sel).outerWidth() + gutter;
-    var cols      = parseInt(ctrWidth / (colWidth + gutter), 10);
-    var leftMar   = ((ctrWidth - ((cols * colWidth) + gutter)) / 2) - gutter;
+    var cols      = parseInt(ctrWidth / colWidth, 10);
+    var leftMar   = ((ctrWidth - (cols * colWidth) - gutter) / 2);
     return {numCols: cols, leftMargin: leftMar};
   }
 

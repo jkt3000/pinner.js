@@ -49,7 +49,7 @@ body {
   left: 50%;
   background: #fff;
   width: 240px;
-  min-height: 240px;
+  min-height: 120px;
   border: 1px solid #ddd;
 }
 .thumbnail { margin:0; padding:0; overflow:hidden; border:none;
@@ -163,7 +163,7 @@ $(function(){
   $('#pincontainer').pinner({
     pinSelector: '.pin',
     imageSelector: '.thumbnail img',
-    hideImagesUntilLoaded: false, // hide images until loaded 
+    showImage: false, // hide images until loaded 
   })
 })
 </script>
