@@ -1,65 +1,31 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>test grid</title>
+  <title>pinner.js - a pinterest-like jquery plugin</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="pinner.js is a simple jquery plugin that loads pins into nice vertical column layouts, similiar to pinterest.com">
+  <meta name="author" content="John Tajima, @redronin">
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.1/underscore-min.js"></script>
-  
+  <script src="js/pinner.js" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
+
   <script type="text/javascript">
-  // imageloaded
-(function(c,n){var k="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";c.fn.imagesLoaded=function(l){function m(){var b=c(h),a=c(g);d&&(g.length?d.reject(e,b,a):d.resolve(e));c.isFunction(l)&&l.call(f,e,b,a)}function i(b,a){b.src===k||-1!==c.inArray(b,j)||(j.push(b),a?g.push(b):h.push(b),c.data(b,"imagesLoaded",{isBroken:a,src:b.src}),o&&d.notifyWith(c(b),[a,e,c(h),c(g)]),e.length===j.length&&(setTimeout(m),e.unbind(".imagesLoaded")))}var f=this,d=c.isFunction(c.Deferred)?c.Deferred():
-0,o=c.isFunction(d.notify),e=f.find("img").add(f.filter("img")),j=[],h=[],g=[];e.length?e.bind("load.imagesLoaded error.imagesLoaded",function(b){i(b.target,"error"===b.type)}).each(function(b,a){var e=a.src,d=c.data(a,"imagesLoaded");if(d&&d.src===e)i(a,d.isBroken);else if(a.complete&&a.naturalWidth!==n)i(a,0===a.naturalWidth||0===a.naturalHeight);else if(a.readyState||a.complete)a.src=k,a.src=e}):m();return d?d.promise(f):f}})(jQuery);
+    // imageloaded
+  (function(c,n){var k="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";c.fn.imagesLoaded=function(l){function m(){var b=c(h),a=c(g);d&&(g.length?d.reject(e,b,a):d.resolve(e));c.isFunction(l)&&l.call(f,e,b,a)}function i(b,a){b.src===k||-1!==c.inArray(b,j)||(j.push(b),a?g.push(b):h.push(b),c.data(b,"imagesLoaded",{isBroken:a,src:b.src}),o&&d.notifyWith(c(b),[a,e,c(h),c(g)]),e.length===j.length&&(setTimeout(m),e.unbind(".imagesLoaded")))}var f=this,d=c.isFunction(c.Deferred)?c.Deferred():
+  0,o=c.isFunction(d.notify),e=f.find("img").add(f.filter("img")),j=[],h=[],g=[];e.length?e.bind("load.imagesLoaded error.imagesLoaded",function(b){i(b.target,"error"===b.type)}).each(function(b,a){var e=a.src,d=c.data(a,"imagesLoaded");if(d&&d.src===e)i(a,d.isBroken);else if(a.complete&&a.naturalWidth!==n)i(a,0===a.naturalWidth||0===a.naturalHeight);else if(a.readyState||a.complete)a.src=k,a.src=e}):m();return d?d.promise(f):f}})(jQuery);
   </script>
 
   <style type="text/css">
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-    display: block;
-}
 body {
-    line-height: 1;
+  font-family: "Arial", serif;
+  font-size: 13px;
+  line-height: 18px;
+  background-color: #F6F6F6;
+  padding: 50px;
 }
-ol, ul {
-    list-style: none;
-}
-blockquote, q {
-    quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-    content: '';
-    content: none;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
 
 * {
   -webkit-transition: all .5s ease-in-out;
@@ -73,220 +39,134 @@ table {
   box-sizing: border-box;
 }
 
+#pincontainer { padding-top: 40px; display:block; position:relative;}
+/*
+.container { margin: 30px auto; padding: 10px; min-width: 960px; min-height: 600px; background: #fff; border: 1px solid #ddd; display:block; position:relative; padding-bottom: 50px; margin-bottom :50px;}*/
 
-html, body {
-  height: 100%;
-  min-height: 100%;
-}
-
-body {
-  font-family: "Arial", serif;
-  font-size: 13px;
-  line-height: 18px;
-  background-color: #F6F6F6;
-  padding: 50px;
-}
-
-.container { margin: 30px auto; padding: 10px; min-width: 960px; min-height: 600px; background: #fff; border: 1px solid #ddd; display:block; position:relative; padding-bottom: 50px; margin-bottom :50px;}
-
-.block {
+.pin {
   position: absolute;
   display:block;
+  left: 50%;
   background: #fff;
   width: 240px;
   min-height: 240px;
   border: 1px solid #ddd;
 }
-.thumbnail {
-  width: 100%; min-height: 100px; background: #333; margin:0; padding:0; overflow:hidden;
+.thumbnail { margin:0; padding:0; overflow:hidden; border:none;
 }
 
-.thumbnail img { width: 240px; }
-
+.thumbnail img { width: 240px; border:none;}
 .meta { padding: 10px; }
 
   </style>
 </head>
 <body>
-
-  <div class='container clearfix'>
-
-    <div class='block' id='product-1'>
-      <div class='thumbnail'>
-        <img src='http://cdn.shopify.com/s/files/1/0057/0102/products/euthanizet_shirt9_medium.jpg?100282'/>
-      </div>
-      <div class='meta'>
-        <p>Some title</p>
-        <p>Some other title</p>
-      </div>
-    </div>
-    <div class='block' id='product-2'>
-      <div class='thumbnail'>
-        <img src='http://cdn.shopify.com/s/files/1/0027/0322/products/Qwas_Rail_Dogs_4_medium.jpeg?100731'/>
-      </div>
-      <div class='meta'>
-        <p>Product2</p>
-        <p>Some other title</p>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container" style='width:100%; padding-left:20px'>
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">Pinner.js</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
       </div>
     </div>
-    <div class='block' id='product-3'>
-      <div class='thumbnail'>
-        <img src='http://cdn.shopify.com/s/files/1/0038/4242/products/revolution_for_dogs_85.1_130_lbs_6_doses_medium.jpg?100031'/>
-      </div>
-      <div class='meta'>
-        <p>Product3</p>
-        <p>Some other title</p>
-      </div>
-    </div>
-    <div class='block' id='product-4'>
-      <div class='thumbnail'>
-        <img src='http://cdn.shopify.com/s/files/1/0105/9112/products/Schenker-FF-Final-Logo_11_medium.png?512'/>
-      </div>
-      <div class='meta'>
-        <p>Product4</p>
-        <p>Some other title</p>
-      </div>
-    </div>
-    <div class='block' id='product-5'>
-      <div class='thumbnail'>
-        <img src='http://cdn.shopify.com/s/files/1/0031/3572/products/The_Hockey_Player_600x600_Frame_medium.png?100700'/>
-      </div>
-      <div class='meta'>
-        <p>Product5</p>
-        <p>Some other title</p>
-      </div>
-    </div>
-    <div class='block' id='product-6'>
-      <div class='thumbnail'>
-        <img src='http://cdn.shopify.com/s/files/1/0031/3572/products/The_Hockey_Player_600x600_Frame_medium.png?100700'/>
-      </div>
-      <div class='meta'>
-        <p>Product6</p>
-        <p>Some other title</p>
-      </div>
-    </div>
-    <div class='block' id='product-7'>
-      <div class='thumbnail'>
-        <img src='http://cdn.shopify.com/s/files/1/0070/0602/products/tentulips_1_medium.jpg?100651'/>
-      </div>
-      <div class='meta'>
-        <p>Product7</p>
-        <p>Some other title</p>
-      </div>
-    </div>
-    <div class='block' id='product-8'>
-      <div class='thumbnail'>
-        <img src='http://cdn.shopify.com/s/files/1/0039/7572/products/DSCF3213_edit-27_large.jpeg?101879'/>
-      </div>
-      <div class='meta'>
-        <p>Product8</p>
-        <p>Some other title</p>
-      </div>
-    </div>
-    <div class='block' id='product-9'>
-      <div class='thumbnail'>
-        <img src='http://cdn.shopify.com/s/files/1/0049/0162/products/tulips_medium.jpg?100019'/>
-      </div>
-      <div class='meta'>
-        <p>Product9</p>
-        <p>Some other title</p>
-      </div>
-    </div>
-    <div class='block' id='product-10'>
-      <div class='thumbnail'>
-        <img src='http://cdn.shopify.com/s/files/1/0022/9002/products/both_sets_in_stands_no_boxes_large.jpeg?102557'/>
-      </div>
-      <div class='meta'>
-        <p>Product10</p>
-        <p>Some other title</p>
-      </div>
-    </div>
-
-    <div class='block' id='product-11'>
-      <div class='thumbnail'>
-        <img src='http://cdn.shopify.com/s/files/1/0014/9702/products/Disney-Cars-Beach-Towel_large.jpg?101725'/>
-      </div>
-      <div class='meta'>
-        <p>S11</p>
-        <p>Some other title</p>
-      </div>
-    </div>
-    <div class='block' id='product-12'>
-      <div class='thumbnail'>
-        <img src='http://cdn.shopify.com/s/files/1/0079/1322/products/CARST90-1_large.png?2242'/>
-      </div>
-      <div class='meta'>
-        <p>12</p>
-        <p>Some other title</p>
-      </div>
-    </div>
-    <div class='block' id='product-13'>
-      <div class='thumbnail'>
-        <img src='http://cdn.shopify.com/s/files/1/0095/3652/products/GBCM01_medium.jpg?2129'/>
-      </div>
-      <div class='meta'>
-        <p>13</p>
-        <p>Some other title</p>
-      </div>
-    </div>
-    <div class='block' id='product-14'>
-      <div class='thumbnail'>
-        <img src='http://cdn.shopify.com/s/files/1/0064/0342/products/sebra2_large.jpg?101081'/>
-      </div>
-      <div class='meta'>
-        <p>14</p>
-        <p>Some other title</p>
-      </div>
-    </div>
-    <div class='block' id='product-15'>
-      <div class='thumbnail'>
-        <img src='http://cdn.shopify.com/s/files/1/0095/3652/products/Disney_Cars_Party_Favor_1_medium.jpg?2129'/>
-      </div>
-      <div class='meta'>
-        <p>15</p>
-        <p>Some other title</p>
-      </div>
-    </div>
-    <div class='block' id='product-16'>
-      <div class='thumbnail'>
-        <img src='http://cdn.shopify.com/s/files/1/0092/2712/products/cars_wallpaper_1_large.jpg?2897'/>
-      </div>
-      <div class='meta'>
-        <p>16</p>
-        <p>Some other title</p>
-      </div>
-    </div>
-    <div class='block' id='product-17'>
-      <div class='thumbnail'>
-        <img src='http://cdn.shopify.com/s/files/1/0067/7012/products/DSC00716_medium.jpg?103472'/>
-      </div>
-      <div class='meta'>
-        <p>17</p>
-        <p>Some other title</p>
-      </div>
-    </div>
-    <div class='block' id='product-18'>
-      <div class='thumbnail'>
-        <img/>
-      </div>
-      <div class='meta'>
-        <p>18</p>
-        <p>Some other title</p>
-      </div>
-    </div>
-    <div class='block' id='product-19'>
-      <div class='thumbnail'>
-        <img/>
-      </div>
-      <div class='meta'>
-        <p>19</p>
-        <p>Some other title</p>
-      </div>
-    </div>
-
-
-
   </div>
+
+  <div class='page-header'>
+    <h2>Sample Content</h2>
+  </div>
+
+  <div id='pincontainer'>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x200/ff00ff'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x120/dd3344'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x240/ffff66'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x180/66ff99'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x240/aaccdd'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x280/335577'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x300/88ddee'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x140/33ccdd'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x160/339977'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x320/ff00ff'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x150/66ff99'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x220/aaccdd'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x220/335577'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x310/88ddee'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x140/33ccdd'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x260/339977'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+    <div class='pin'>
+      <div class='thumbnail'><img src='http://placehold.it/240x100/ff00ff'/></div>
+      <div class='meta'><p>Some title</p><p>Some other title</p></div>
+    </div>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+$(function(){
+  $('#pincontainer').pinner({
+    pinSelector: '.pin',
+    imageSelector: '.thumbnail img',
+    hideImagesUntilLoaded: false, // hide images until loaded 
+  })
+})
+</script>
 
 
 <script type="text/javascript">
@@ -307,7 +187,7 @@ function loadPanels() {
   });
 
   // interate through each block and add to shortest column
-  $('.block').each(function(i,el){
+  $('.pin').each(function(i,el){
     // find shortest column
     var height = _.min(columnsHeight);
     var idx = columnsHeight.indexOf(height);
@@ -370,7 +250,7 @@ function resizeColumn(el) {
 
 function calculateColumnsAndMargin(gutter) {
   var winWidth = $(window).width();
-  var colWidth = $('div.block:first').outerWidth() + gutter;
+  var colWidth = $('div.pin:first').outerWidth() + gutter;
 
   var cols =  parseInt(winWidth / (colWidth + gutter), 10);
   var contentWidth = (cols * colWidth) + gutter;
@@ -382,46 +262,31 @@ function calculateColumnsAndMargin(gutter) {
 
 
 $(function(){
-  // wait for all images to load
-  $('.thumbnail img').imagesLoaded(function(){
-    console.log('all thumbnails finished loading');
-    // rebalancePanels(); 
-    // future optimization is to rebalance columns at the end by moving last few
-    // panels into different columns so the different between the tallest and shortest is lessened
-  });
+  $('#pincontainer').pinner();
 
-  // listen on each thumbnail and resize affected column
-  $('.thumbnail img').each(function(i, el){
-    $(el).imagesLoaded(function(){
-      var div = $(el).parents('.block')[0];
-      resizeColumn(div);
-    });
-  });
+  // // wait for all images to load
+  // $('.thumbnail img').imagesLoaded(function(){
+  //   console.log('all thumbnails finished loading');
+  //   // rebalancePanels(); 
+  //   // future optimization is to rebalance columns at the end by moving last few
+  //   // panels into different columns so the different between the tallest and shortest is lessened
+  // });
 
-  // listen on window resize
-  $(window).on('resize', loadPanels);
+  // // listen on each thumbnail and resize affected column
+  // $('.thumbnail img').each(function(i, el){
+  //   $(el).imagesLoaded(function(){
+  //     var div = $(el).parents('.pin')[0];
+  //     resizeColumn(div);
+  //   });
+  // });
 
-  loadPanels();
+  // // listen on window resize
+  // $(window).on('resize', loadPanels);
+
+  // loadPanels();
 })
 
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </body>
